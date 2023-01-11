@@ -54,23 +54,9 @@ public class YdSdk {
                 + System.getProperty("os.version");
     }
 
-
-    public String utf8ToAscii(String raw) {
-        StringBuilder out = new StringBuilder();
-        for(int i = 0; i < raw.length(); i++) {
-            final char ch = raw.charAt(i);
-            if(ch <= 127) {
-                out.append(ch);
-            } else {
-                out.append("\\u").append(String.format("%04x", (int)ch));
-            }
-        }
-        return out.toString();
-    }
-
     private String sign(Map<String, Object> data, String dataFrom) {
         data.remove("_files");
-        String encodedPayload = base64UrlEncode(this.utf8ToAscii(JSON.toJSONString(data)).getBytes());
+        String encodedPayload = base64UrlEncode(JSON.toJSONString(data).getBytes());
 
         byte[] hashedSign = hashSignature(encodedPayload, this.appSecret);
         if (hashedSign == null) {

@@ -10,13 +10,14 @@ public class Demo {
 
     public static void main(String[] args) {
         try {
+            // 注意：业务实际使用时请将环境变量替换成具体的值
             //   参数分别是 apiUrlPre / appId / appSecret
-            YdSdk ydSdk = new YdSdk("http://api.local.com/V4/", "xxxxxxxxxxxxxxxxxxxx", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            YdSdk ydSdk = new YdSdk(System.getenv("YDSDK_API_PRE"), System.getenv("YDSDK_API_ID"), System.getenv("YDSDK_APP_SECERT"));
             //   参数分别是 apiUrlPre / appId / appSecret / userId， 其中 userId 在特殊场景下才会使用
-            //YdSdk ydSdk = new YdSdk("http://api.local.com/V4/", "xxxxxxxxxxxxxxxxxxxx", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "88350");
+            //YdSdk ydSdk = new YdSdk(System.getenv("YDSDK_API_PRE"), System.getenv("YDSDK_API_ID"), System.getenv("YDSDK_APP_SECERT"), "88350");
             // 支持自定义OkHttpClient
             //OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS).build();
-            //YdSdk ydSdk = new YdSdk("http://api.local.com/V4/", "xxxxxxxxxxxxxxxxxxxx", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "", okHttpClient);
+            //YdSdk ydSdk = new YdSdk(System.getenv("YDSDK_API_PRE"), System.getenv("YDSDK_API_ID"), System.getenv("YDSDK_APP_SECERT"), "", okHttpClient);
 
             String api;
             JSONObject result;
@@ -27,7 +28,7 @@ public class Demo {
             api = "test.sdk.get";
             query.put("domain_id", "1");
             query.put("status", "2");
-            query.put("name", "name名称");
+            query.put("name", "name名称~!@#$%^&*()_+{}|:\"?><`1234567890-=[]\\';.,/");
             result = ydSdk.get(api, query);
             System.out.println(api + " get<api, query>: ");
             System.out.println(JSON.toJSONString(result) + "\n");
@@ -53,7 +54,7 @@ public class Demo {
             api = "test.sdk.post";
             postData.put("domain_id", "1");
             postData.put("status", "2");
-            postData.put("name", "name名称");
+            postData.put("name", "name名称~!@#$%^&*()_+{}|:\"?><`1234567890-=[]\\';.,/");
 
             result = ydSdk.post(api, postData);
             System.out.println(api + " post<api, postData>: ");
@@ -98,7 +99,7 @@ public class Demo {
             api = "test.sdk.patch";
             postData.put("domain_id", "1");
             postData.put("status", "2");
-            postData.put("name", "name名称");
+            postData.put("name", "name名称~!@#$%^&*()_+{}|:\"?><`1234567890-=[]\\';.,/");
 
             result = ydSdk.patch(api, postData);
             System.out.println(api + " patch<api, postData>: ");
@@ -117,7 +118,7 @@ public class Demo {
             api = "test.sdk.put";
             postData.put("domain_id", "1");
             postData.put("status", "2");
-            postData.put("name", "name名称");
+            postData.put("name", "name名称~!@#$%^&*()_+{}|:\"?><`1234567890-=[]\\';.,/");
 
             result = ydSdk.put(api, postData);
             System.out.println(api + " put<api, postData>: ");
@@ -137,7 +138,7 @@ public class Demo {
             api = "test.sdk.delete";
             postData.put("domain_id", "1");
             postData.put("status", "2");
-            postData.put("name", "name名称");
+            postData.put("name", "name名称~!@#$%^&*()_+{}|:\"?><`1234567890-=[]\\';.,/");
 
             result = ydSdk.delete(api, postData);
             System.out.println(api + " delete<api, postData>: ");
